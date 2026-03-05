@@ -835,6 +835,34 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+body.modal-lock {
+  overflow: hidden;
+}
+
+.overlay {
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+.modal {
+  display: none;
+}
+
+.modal.active {
+  display: block;
+}
+
+.project-modal {
+  display: none;
+}
+
+.project-modal.active {
+  display: flex;
+}
+
 
 
 
