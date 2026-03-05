@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(){
+
 /* ===============================
    ELEMENT SELECTOR
 ================================ */
@@ -8,7 +9,7 @@ const modalContent = document.getElementById("modalContent");
 const closeModal = document.getElementById("closeModal");
 const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
-let scrollPosition = 0;
+
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
@@ -24,37 +25,22 @@ window.addEventListener("load", () => {
    UNIVERSAL MODAL
 ================================ */
 function openModal(html){
-
-    scrollPosition = window.pageYOffset;
-
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollPosition}px`;
-    document.body.style.width = "100%";
-
     modalContent.innerHTML = html;
     overlay.classList.add("active");
     modal.classList.add("active");
+    document.body.classList.add("modal-open"); // TAMBAHAN
 }
 
 function closeModalFunc(){
-
-    document.body.classList.add("modal-lock");
-}
-   function closeModalFunc(){
     overlay.classList.remove("active");
     modal.classList.remove("active");
-
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.width = "";
-
-    window.scrollTo(0, scrollPosition);
-    document.body.classList.remove("modal-lock");
+    document.body.classList.remove("modal-open"); // TAMBAHAN
 }
 
-});
+overlay.addEventListener("click", closeModalFunc);
+closeModal.addEventListener("click", closeModalFunc);
+
 /* ===============================
-   /* ===============================
    EXPLORE BUTTON FIX
 ================================ */
 exploreBtn.addEventListener("click", function(e){
