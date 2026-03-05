@@ -11,17 +11,18 @@
 
 <body>
 
-<!-- CUSTOM CURSOR -->
-<div class="custom-cursor"></div>
-
-<!-- INTRO -->
+<!-- ================= INTRO LOADING ================= -->
 <div id="intro">
-    <img src="containe.png">
+    <div class="intro-content">
+        <img src="containe.png" alt="Containè Logo">
+        <div class="loader-line"></div>
+    </div>
 </div>
 
+<!-- ================= HEADER ================= -->
 <header>
     <div class="brand">
-        <img src="containe.png">
+        <img src="containe.png" alt="Containè">
         <span>Containè</span>
     </div>
     <nav>
@@ -31,9 +32,10 @@
     </nav>
 </header>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
     <video autoplay muted loop playsinline class="bg-video">
-        <source src="https://cdn.coverr.co/videos/coverr-coffee-being-poured-into-a-cup-1560/1080p.mp4">
+        <source src="https://cdn.coverr.co/videos/coverr-coffee-being-poured-into-a-cup-1560/1080p.mp4" type="video/mp4">
     </video>
 
     <div class="hero-content">
@@ -44,63 +46,71 @@
     </div>
 </section>
 
+<!-- ================= PROJECTS ================= -->
 <section id="projects" class="section">
 <h2>Projects</h2>
+
 <div class="products">
-    <div class="product" data-project="coffee">
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+
+    <div class="product project-trigger" data-project="coffee">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80">
         <h3>Coffee Concept</h3>
     </div>
 
-    <div class="product" data-project="brand">
-        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348">
+    <div class="product project-trigger" data-project="brand">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80">
         <h3>Brand Identity</h3>
     </div>
+
 </div>
 </section>
 
+<!-- ================= MENU ================= -->
 <section id="menu" class="menu">
 <h2>Our Menu</h2>
 
 <div class="menu-grid">
 
 <div class="menu-item category-card" data-category="coffee">
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80">
 <h3>Coffee Series</h3>
 </div>
 
 <div class="menu-item category-card" data-category="noncoffee">
-<img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e">
+<img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80">
 <h3>Non Coffee Series</h3>
 </div>
 
 <div class="menu-item category-card" data-category="tea">
-<img src="https://images.unsplash.com/photo-1497534446932-c925b458314e">
+<img src="https://images.unsplash.com/photo-1497534446932-c925b458314e?w=800&q=80">
 <h3>Tea Series</h3>
 </div>
 
 <div class="menu-item category-card" data-category="snack">
-<img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d">
+<img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&q=80">
 <h3>Snack Series</h3>
 </div>
 
 </div>
 </section>
+
+<!-- ================= FOOTER ================= -->
 <footer id="contact">
 <p>© 2026 Containè — Mind in Motion</p>
 </footer>
 
+<!-- ================= WHATSAPP FLOAT ================= -->
 <div class="wa-float" id="openWA">Contact</div>
 
-<!-- UNIVERSAL MODAL -->
+<!-- ================= UNIVERSAL MODAL ================= -->
 <div class="overlay" id="overlay"></div>
+
 <div class="modal" id="modal">
     <span class="close" id="closeModal">&times;</span>
     <div id="modalContent"></div>
 </div>
 
-<script src="script.js"></script>
-<!-- PROJECT POPUP -->
+<!-- ================= PROJECT CINEMATIC MODAL ================= -->
 <div id="projectModal" class="project-modal">
 
   <div class="project-box" id="projectContent">
@@ -108,20 +118,15 @@
     <div class="project-blur-layer"></div>
 
     <div class="project-inner">
-      <span class="project-close" onclick="closeProject()">✕</span>
+      <span class="project-close" id="closeProjectBtn">✕</span>
       <div id="projectText" class="project-text"></div>
     </div>
 
   </div>
-<button class="project-btn" onclick="openProject('coffee')">
-Coffee Concept
-</button>
-
-<button class="project-btn" onclick="openProject('brand')">
-Brand Identity
-</button>
 
 </div>
-</body>
 
+<script src="script.js"></script>
+
+</body>
 </html>
