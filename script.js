@@ -1,3 +1,12 @@
+document.addEventListener("click", function(e){
+    if(
+        modal.classList.contains("active") &&
+        !modalContent.contains(e.target) &&
+        !e.target.closest(".menu-popup-card")
+    ){
+        closeModalFunc();
+    }
+});
 document.addEventListener("DOMContentLoaded", function(){
 /* ===============================
    ELEMENT SELECTOR
@@ -17,6 +26,12 @@ window.addEventListener("load", () => {
         intro.style.pointerEvents = "none";
         setTimeout(()=> intro.style.display = "none", 800);
     }, 1200);
+   /* CLOSE MODAL JIKA KLIK DI LUAR BOX */
+modal.addEventListener("click", function(e){
+    if(e.target === modal){
+        closeModalFunc();
+    }
+});
 });
 
 /* ===============================
@@ -35,6 +50,7 @@ function openModal(html){
 
     document.body.classList.remove("modal-lock");
 }
+   
    /* ===============================
    EXPLORE BUTTON FIX
 ================================ */
@@ -212,6 +228,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
 });
 
 });
+
 
 
 
