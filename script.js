@@ -29,16 +29,27 @@ window.addEventListener("load", () => {
 ================================ */
 
 function openModal(html){
+
     modalContent.innerHTML = html;
+
     overlay.classList.add("active");
     modal.classList.add("active");
     document.body.classList.add("modal-lock");
+
+    modalContent.classList.remove("modal-exit");
+    modalContent.classList.add("modal-enter");
 }
 
 function closeModalFunc(){
-    overlay.classList.remove("active");
-    modal.classList.remove("active");
-    document.body.classList.remove("modal-lock");
+
+    modalContent.classList.remove("modal-enter");
+    modalContent.classList.add("modal-exit");
+
+    setTimeout(()=>{
+        overlay.classList.remove("active");
+        modal.classList.remove("active");
+        document.body.classList.remove("modal-lock");
+    }, 200);
 }
 
 overlay.addEventListener("click", closeModalFunc);
@@ -155,22 +166,31 @@ document.querySelectorAll(".category-card").forEach(card=>{
 
 function showDetail(name){
 
-    openModal(`
-        <h2 style="font-family:Cinzel;">${name}</h2>
+    modalContent.classList.remove("modal-enter");
+    modalContent.classList.add("modal-exit");
 
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
-             onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'">
+    setTimeout(()=>{
 
-        <p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
+        modalContent.innerHTML = `
+            <h2 style="font-family:Cinzel;">${name}</h2>
 
-        <ul style="margin-top:15px;line-height:1.8;">
-            <li>Premium selected ingredient</li>
-            <li>Fresh daily preparation</li>
-            <li>High quality base material</li>
-        </ul>
-    `);
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
+                 onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'">
+
+            <p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
+
+            <ul style="margin-top:15px;line-height:1.8;">
+                <li>Premium selected ingredient</li>
+                <li>Fresh daily preparation</li>
+                <li>High quality base material</li>
+            </ul>
+        `;
+
+        modalContent.classList.remove("modal-exit");
+        modalContent.classList.add("modal-enter");
+
+    },200);
 }
-
 /* ===============================
    PROJECT MODAL
 ================================ */
@@ -240,3 +260,4 @@ document.getElementById("openWA").addEventListener("click", ()=>{
 });
 
 });
+
