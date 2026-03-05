@@ -9,8 +9,6 @@ const closeModal = document.getElementById("closeModal");
 const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
 
-   let scrollPosition = 0;
-
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
