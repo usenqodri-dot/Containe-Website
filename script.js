@@ -1,70 +1,85 @@
-document.addEventListener("click", function(e){
-    if(
-        modal.classList.contains("active") &&
-        !modalContent.contains(e.target) &&
-        !e.target.closest(".menu-popup-card")
-    ){
-        closeModalFunc();
-    }
-});
 document.addEventListener("DOMContentLoaded", function(){
+
 /* ===============================
    ELEMENT SELECTOR
 ================================ */
+
 const overlay = document.getElementById("overlay");
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modalContent");
 const closeModal = document.getElementById("closeModal");
 const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
+
 /* ===============================
-   INTRO LOADING ANIMATION
+   INTRO LOADING
 ================================ */
+
 window.addEventListener("load", () => {
     setTimeout(() => {
         intro.style.opacity = "0";
-        intro.style.pointerEvents = "none";
-        setTimeout(()=> intro.style.display = "none", 800);
+        setTimeout(() => {
+            intro.style.display = "none";
+        }, 800);
     }, 1200);
-   /* CLOSE MODAL JIKA KLIK DI LUAR BOX */
-modal.addEventListener("click", function(e){
-    if(e.target === modal){
-        closeModalFunc();
-    }
-});
 });
 
 /* ===============================
-   UNIVERSAL MODAL
+   UNIVERSAL MODAL CONTROL
 ================================ */
+
 function openModal(html){
     modalContent.innerHTML = html;
     overlay.classList.add("active");
     modal.classList.add("active");
-
     document.body.classList.add("modal-lock");
 }
-   function closeModalFunc(){
+
+function closeModalFunc(){
     overlay.classList.remove("active");
     modal.classList.remove("active");
-
     document.body.classList.remove("modal-lock");
 }
-   
-   /* ===============================
-   EXPLORE BUTTON FIX
+
+overlay.addEventListener("click", closeModalFunc);
+closeModal.addEventListener("click", closeModalFunc);
+
+/* Close when clicking outside modal box */
+document.addEventListener("click", function(e){
+    if(
+        modal.classList.contains("active") &&
+        !modalContent.contains(e.target) &&
+        !e.target.closest(".category-card") &&
+        !e.target.closest(".menu-popup-card")
+    ){
+        closeModalFunc();
+    }
+});
+
+/* Close with ESC */
+document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+        closeModalFunc();
+        closeProject();
+    }
+});
+
+/* ===============================
+   EXPLORE BUTTON
 ================================ */
+
 exploreBtn.addEventListener("click", function(e){
     e.preventDefault();
     document.getElementById("menu").scrollIntoView({
-        behavior:"smooth",
-        block:"start"
+        behavior: "smooth",
+        block: "start"
     });
 });
 
 /* ===============================
    MENU DATA
 ================================ */
+
 const menuData = {
 
 coffee:[
@@ -98,8 +113,9 @@ snack:[
 /* ===============================
    CATEGORY CLICK
 ================================ */
+
 document.querySelectorAll(".category-card").forEach(card=>{
-    card.addEventListener("click",()=>{
+    card.addEventListener("click", ()=>{
 
         const category = card.dataset.category;
         const title = card.querySelector("h3").innerText;
@@ -110,8 +126,6 @@ document.querySelectorAll(".category-card").forEach(card=>{
         `;
 
         menuData[category].forEach(item=>{
-
-            const keyword = item.replace(/\s/g,'-');
 
             html += `
             <div class="menu-popup-card" data-item="${item}">
@@ -126,10 +140,9 @@ document.querySelectorAll(".category-card").forEach(card=>{
 
         openModal(html);
 
-        // Add click event for each menu item
-        document.querySelectorAll(".menu-popup-card").forEach(card=>{
-            card.addEventListener("click", ()=>{
-                showDetail(card.dataset.item);
+        document.querySelectorAll(".menu-popup-card").forEach(itemCard=>{
+            itemCard.addEventListener("click", ()=>{
+                showDetail(itemCard.dataset.item);
             });
         });
 
@@ -139,9 +152,8 @@ document.querySelectorAll(".category-card").forEach(card=>{
 /* ===============================
    DETAIL POPUP
 ================================ */
-function showDetail(name){
 
-    const keyword = name.replace(/\s/g,'-');
+function showDetail(name){
 
     openModal(`
         <h2 style="font-family:Cinzel;">${name}</h2>
@@ -162,16 +174,23 @@ function showDetail(name){
 /* ===============================
    PROJECT MODAL
 ================================ */
+
 const projectModal = document.getElementById("projectModal");
 const projectContent = document.getElementById("projectContent");
 const projectText = document.getElementById("projectText");
 const closeProjectBtn = document.getElementById("closeProjectBtn");
+
+function closeProject(){
+    projectModal.classList.remove("active");
+    document.body.classList.remove("blurred");
+}
 
 document.querySelectorAll(".project-trigger").forEach(card=>{
     card.addEventListener("click", ()=>{
         const type = card.dataset.project;
 
         projectModal.classList.add("active");
+        document.body.classList.add("blurred");
 
         if(type === "coffee"){
             projectContent.style.backgroundImage =
@@ -180,9 +199,7 @@ document.querySelectorAll(".project-trigger").forEach(card=>{
                 <h2>Coffee Concept</h2>
                 <p>
                 Containè melihat kopi sebagai pengalaman,
-                bukan sekadar minuman. Setiap cangkir
-                dirancang menghadirkan aroma, karakter,
-                dan suasana elegan.
+                bukan sekadar minuman.
                 </p>
             `;
         }
@@ -194,24 +211,19 @@ document.querySelectorAll(".project-trigger").forEach(card=>{
                 <h2>Brand Identity</h2>
                 <p>
                 Containè adalah brand kopi premium
-                dengan identitas modern dan minimalis
-                yang menciptakan pengalaman tak terlupakan.
+                dengan identitas modern minimalis.
                 </p>
             `;
         }
-
-        document.body.classList.add("blurred");
     });
 });
 
-closeProjectBtn.addEventListener("click", ()=>{
-    projectModal.classList.remove("active");
-    document.body.classList.remove("blurred");
-});
+closeProjectBtn.addEventListener("click", closeProject);
 
 /* ===============================
    WHATSAPP POPUP
 ================================ */
+
 document.getElementById("openWA").addEventListener("click", ()=>{
     openModal(`
         <h2 style="font-family:Cinzel;">Contact Us</h2>
@@ -228,10 +240,3 @@ document.getElementById("openWA").addEventListener("click", ()=>{
 });
 
 });
-
-
-
-
-
-
-
