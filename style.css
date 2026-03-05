@@ -781,3 +781,57 @@ body.modal-open {
     background: rgba(255,255,255,0.3);
     border-radius: 10px;
 }
+/* LOCK BACKGROUND SCROLL - STABLE VERSION */
+
+body.modal-lock {
+    overflow: hidden;
+    height: 100vh;
+}
+/* ===============================
+   ULTRA SMOOTH MODAL ANIMATION
+================================ */
+
+/* Fade + slide masuk */
+.modal-enter {
+    animation: modalFadeIn 0.35s ease forwards;
+}
+
+.modal-exit {
+    animation: modalFadeOut 0.25s ease forwards;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+    }
+}
+
+/* Grid item animation */
+.menu-popup-card {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: cardReveal 0.4s ease forwards;
+}
+
+@keyframes cardReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
