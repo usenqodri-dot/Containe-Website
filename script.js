@@ -8,9 +8,7 @@ const modalContent = document.getElementById("modalContent");
 const closeModal = document.getElementById("closeModal");
 const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
-
-   let scrollPosition = 0;
-
+let scrollPosition = 0;
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
@@ -37,8 +35,12 @@ function openModal(html){
     overlay.classList.add("active");
     modal.classList.add("active");
 }
+
 function closeModalFunc(){
 
+    document.body.classList.add("modal-lock");
+}
+   function closeModalFunc(){
     overlay.classList.remove("active");
     modal.classList.remove("active");
 
@@ -47,12 +49,12 @@ function closeModalFunc(){
     document.body.style.width = "";
 
     window.scrollTo(0, scrollPosition);
+    document.body.classList.remove("modal-lock");
 }
 
-overlay.addEventListener("click", closeModalFunc);
-closeModal.addEventListener("click", closeModalFunc);
-
+});
 /* ===============================
+   /* ===============================
    EXPLORE BUTTON FIX
 ================================ */
 exploreBtn.addEventListener("click", function(e){
