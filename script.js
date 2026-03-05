@@ -8,7 +8,7 @@ const modalContent = document.getElementById("modalContent");
 const closeModal = document.getElementById("closeModal");
 const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
-
+let scrollPosition = 0;
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
@@ -24,20 +24,31 @@ window.addEventListener("load", () => {
    UNIVERSAL MODAL
 ================================ */
 function openModal(html){
+
+    scrollPosition = window.pageYOffset;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.width = "100%";
+
     modalContent.innerHTML = html;
     overlay.classList.add("active");
     modal.classList.add("active");
-    document.body.classList.add("modal-open"); // TAMBAHAN
 }
+
 function closeModalFunc(){
+
     overlay.classList.remove("active");
     modal.classList.remove("active");
-    document.body.classList.remove("modal-open"); // TAMBAHAN
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+
+    window.scrollTo(0, scrollPosition);
 }
 
-overlay.addEventListener("click", closeModalFunc);
-closeModal.addEventListener("click", closeModalFunc);
-
+});
 /* ===============================
    EXPLORE BUTTON FIX
 ================================ */
@@ -215,6 +226,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
 });
 
 });
+
 
 
 
