@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
 
 /* ===============================
-   ELEMENT SELECTOR
+   ELEMENT
 ================================ */
 
 const overlay = document.getElementById("overlay");
@@ -12,66 +12,55 @@ const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
 
 /* ===============================
-   INTRO LOADING
+   INTRO
 ================================ */
 
 window.addEventListener("load", () => {
     setTimeout(() => {
         intro.style.opacity = "0";
-        setTimeout(() => {
-            intro.style.display = "none";
-        }, 800);
+        setTimeout(()=> intro.style.display = "none", 800);
     }, 1200);
 });
 
 /* ===============================
-   UNIVERSAL MODAL CONTROL
+   MODAL SYSTEM
 ================================ */
 
 function openModal(html){
-
     modalContent.innerHTML = html;
 
     overlay.classList.add("active");
     modal.classList.add("active");
     document.body.classList.add("modal-lock");
 
-    modalContent.classList.remove("modal-exit");
-    modalContent.classList.add("modal-enter");
+    modalContent.style.opacity = "0";
+    modalContent.style.transform = "translateY(20px)";
+
+    setTimeout(()=>{
+        modalContent.style.transition = "0.3s ease";
+        modalContent.style.opacity = "1";
+        modalContent.style.transform = "translateY(0)";
+    },10);
 }
 
 function closeModalFunc(){
 
-    modalContent.classList.remove("modal-enter");
-    modalContent.classList.add("modal-exit");
+    modalContent.style.opacity = "0";
+    modalContent.style.transform = "translateY(10px)";
 
     setTimeout(()=>{
         overlay.classList.remove("active");
         modal.classList.remove("active");
         document.body.classList.remove("modal-lock");
-    }, 200);
+    },200);
 }
 
 overlay.addEventListener("click", closeModalFunc);
 closeModal.addEventListener("click", closeModalFunc);
 
-/* Close when clicking outside modal box */
-document.addEventListener("click", function(e){
-    if(
-        modal.classList.contains("active") &&
-        !modalContent.contains(e.target) &&
-        !e.target.closest(".category-card") &&
-        !e.target.closest(".menu-popup-card")
-    ){
-        closeModalFunc();
-    }
-});
-
-/* Close with ESC */
 document.addEventListener("keydown", function(e){
     if(e.key === "Escape"){
         closeModalFunc();
-        closeProject();
     }
 });
 
@@ -82,8 +71,7 @@ document.addEventListener("keydown", function(e){
 exploreBtn.addEventListener("click", function(e){
     e.preventDefault();
     document.getElementById("menu").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+        behavior:"smooth"
     });
 });
 
@@ -92,7 +80,6 @@ exploreBtn.addEventListener("click", function(e){
 ================================ */
 
 const menuData = {
-
 coffee:[
 "Espresso","Ristretto","Sanger","Latte","Black Coffee","V60",
 "Japanese","Cappuccino","Honey Latte","Coconut Latte",
@@ -100,29 +87,25 @@ coffee:[
 "Tiramisu Mocha Latte","Butterscotch Aren Latte",
 "Pistachio Latte","Coffemalatte","Mocha Latte","Spanish Latte"
 ],
-
 noncoffee:[
 "Matcha","Matcha Latte","Matcha Milk Shake","Chocolatte",
 "Chocolate Milk Shake","Red Velvet","Ice Shaken Lemon Tea",
 "Fresh Lemonade","Hazelnut Coco","Fresh Peach",
 "Vanilla Milk Shake","Butterscotch Sea Salt Crumble","Baby Chinno"
 ],
-
 tea:[
 "Lavender Tea","Earl Grey Tea","Kyoto Japanese Tea",
 "Black Tea","Peppermint Tea","Thai Tea",
 "Hazelnut Tea","Peach Tea"
 ],
-
 snack:[
 "Waffle","Sosis","Chicken Nuggets","Mixed Platter",
 "Sandwich","French Fries"
 ]
-
 };
 
 /* ===============================
-   CATEGORY CLICK
+   CATEGORY CLICK (FIXED)
 ================================ */
 
 document.querySelectorAll(".category-card").forEach(card=>{
@@ -132,18 +115,16 @@ document.querySelectorAll(".category-card").forEach(card=>{
         const title = card.querySelector("h3").innerText;
 
         let html = `
-        <h2 style="font-family:Cinzel;margin-bottom:25px;">${title}</h2>
-        <div class="menu-popup-grid">
+            <h2 style="font-family:Cinzel;margin-bottom:25px;">${title}</h2>
+            <div class="menu-popup-grid">
         `;
 
         menuData[category].forEach(item=>{
-
             html += `
-            <div class="menu-popup-card" data-item="${item}">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
-                     onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80'">
-                <h4>${item}</h4>
-            </div>
+                <div class="menu-popup-card" data-item="${item}">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80">
+                    <h4>${item}</h4>
+                </div>
             `;
         });
 
@@ -151,9 +132,10 @@ document.querySelectorAll(".category-card").forEach(card=>{
 
         openModal(html);
 
-        document.querySelectorAll(".menu-popup-card").forEach(itemCard=>{
-            itemCard.addEventListener("click", ()=>{
-                showDetail(itemCard.dataset.item);
+        /* Add detail click */
+        document.querySelectorAll(".menu-popup-card").forEach(menuCard=>{
+            menuCard.addEventListener("click", ()=>{
+                showDetail(menuCard.dataset.item);
             });
         });
 
@@ -166,98 +148,19 @@ document.querySelectorAll(".category-card").forEach(card=>{
 
 function showDetail(name){
 
-    modalContent.classList.remove("modal-enter");
-    modalContent.classList.add("modal-exit");
-
-    setTimeout(()=>{
-
-        modalContent.innerHTML = `
-            <h2 style="font-family:Cinzel;">${name}</h2>
-
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
-                 onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'">
-
-            <p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
-
-            <ul style="margin-top:15px;line-height:1.8;">
-                <li>Premium selected ingredient</li>
-                <li>Fresh daily preparation</li>
-                <li>High quality base material</li>
-            </ul>
-        `;
-
-        modalContent.classList.remove("modal-exit");
-        modalContent.classList.add("modal-enter");
-
-    },200);
-}
-/* ===============================
-   PROJECT MODAL
-================================ */
-
-const projectModal = document.getElementById("projectModal");
-const projectContent = document.getElementById("projectContent");
-const projectText = document.getElementById("projectText");
-const closeProjectBtn = document.getElementById("closeProjectBtn");
-
-function closeProject(){
-    projectModal.classList.remove("active");
-    document.body.classList.remove("blurred");
-}
-
-document.querySelectorAll(".project-trigger").forEach(card=>{
-    card.addEventListener("click", ()=>{
-        const type = card.dataset.project;
-
-        projectModal.classList.add("active");
-        document.body.classList.add("blurred");
-
-        if(type === "coffee"){
-            projectContent.style.backgroundImage =
-            "url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&q=80')";
-            projectText.innerHTML = `
-                <h2>Coffee Concept</h2>
-                <p>
-                Containè melihat kopi sebagai pengalaman,
-                bukan sekadar minuman.
-                </p>
-            `;
-        }
-
-        if(type === "brand"){
-            projectContent.style.backgroundImage =
-            "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80')";
-            projectText.innerHTML = `
-                <h2>Brand Identity</h2>
-                <p>
-                Containè adalah brand kopi premium
-                dengan identitas modern minimalis.
-                </p>
-            `;
-        }
-    });
-});
-
-closeProjectBtn.addEventListener("click", closeProject);
-
-/* ===============================
-   WHATSAPP POPUP
-================================ */
-
-document.getElementById("openWA").addEventListener("click", ()=>{
     openModal(`
-        <h2 style="font-family:Cinzel;">Contact Us</h2>
+        <h2 style="font-family:Cinzel;">${name}</h2>
 
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/qr/Q36BMYAWGK2TF1">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80">
 
-        <a href="https://wa.me/qr/Q36BMYAWGK2TF1"
-           target="_blank"
-           style="display:inline-block;margin-top:15px;padding:10px 20px;
-           background:#c6a15b;color:black;border-radius:20px;text-decoration:none;">
-           Open WhatsApp
-        </a>
+        <p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
+
+        <ul style="margin-top:15px;line-height:1.8;">
+            <li>Premium selected ingredient</li>
+            <li>Fresh daily preparation</li>
+            <li>High quality base material</li>
+        </ul>
     `);
-});
+}
 
 });
-
