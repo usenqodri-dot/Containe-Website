@@ -24,27 +24,15 @@ window.addEventListener("load", () => {
    UNIVERSAL MODAL
 ================================ */
 function openModal(html){
-
-    scrollPosition = window.pageYOffset;
-
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollPosition}px`;
-    document.body.style.width = "100%";
-
     modalContent.innerHTML = html;
     overlay.classList.add("active");
     modal.classList.add("active");
+    document.body.classList.add("modal-open"); // TAMBAHAN
 }
 function closeModalFunc(){
-
     overlay.classList.remove("active");
     modal.classList.remove("active");
-
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.width = "";
-
-    window.scrollTo(0, scrollPosition);
+    document.body.classList.remove("modal-open"); // TAMBAHAN
 }
 
 overlay.addEventListener("click", closeModalFunc);
@@ -227,6 +215,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
 });
 
 });
+
 
 
 
