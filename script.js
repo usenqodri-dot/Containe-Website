@@ -215,18 +215,6 @@ document.getElementById("openWA").addEventListener("click", ()=>{
         </a>
     `);
 });
-/* CENTER GRID GLOBAL */
 
-.products,
-.menu-grid,
-.menu-popup-grid{
-display:grid;
-justify-content:center;
-align-items:start;
-margin-left:auto;
-margin-right:auto;
-}
-
-});
 
 
