@@ -243,17 +243,25 @@ opacity:0.7;
 position:fixed;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%) scale(0.95);
+transform:translate(-50%,-50%);
+width:90%;
+max-width:1000px;
+max-height:85vh;
+
 background:#111;
 color:white;
-padding:40px;
+
 border-radius:20px;
-width:90%;
-max-width:650px;
-opacity:0;
-transition:0.35s ease;
-z-index:2100;
-box-shadow:0 20px 60px rgba(0,0,0,0.8);
+padding:30px;
+
+display:flex;
+flex-direction:column;
+
+z-index:2000;
+
+overflow:hidden;
+
+box-shadow:0 30px 100px rgba(0,0,0,0.8);
 }
 
 .close{
@@ -272,9 +280,9 @@ opacity:1;
 /* MODAL CONTENT SCROLL */
 
 #modalContent{
-max-height:70vh;
 overflow-y:auto;
-padding-right:5px;
+margin-top:20px;
+padding-right:10px;
 }
 
 /* GRID MENU POPUP */
@@ -341,5 +349,3 @@ transition:0.3s;
 .wa-float:hover{
 transform:scale(1.1);
 }
-
-
