@@ -270,17 +270,16 @@ transform:translateY(0);
 }
 /* PREMIUM MODAL */
 .modal{
-position:centre;
+position:absolute;
 top:50%;
-bottom:50%;
 left:50%;
-transform:translate(-50%,-50%) scale(1.5);
+transform:translate(-50%,-50%) scale(4.5);
 
-background:#fff;
+background:#black;
 padding:40px;
-border-radius:12px;
-width:90%;
-max-width:500px;
+border-radius:50px;
+width:40%;
+max-width:900px;
 
 opacity:0;
 transition:0.3s;
@@ -290,7 +289,7 @@ z-index:1000;
 
 .modal.active{
 opacity:1;
-transform:translate(-50%,-50%) scale(1);
+transform:translate(-50%,-50%) scale(4.5);
 }
 
 .close{
@@ -800,6 +799,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
