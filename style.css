@@ -273,12 +273,12 @@ transform:translateY(0);
 position:absolute;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%) scale(1);
+transform:translate(-50%,-50%) scale(0.30);
 
 background:#black;
 padding:40px;
 border-radius:50px;
-width:90%;
+width:20%;
 max-width:500px;
 
 opacity:0;
@@ -799,6 +799,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
