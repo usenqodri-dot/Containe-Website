@@ -272,9 +272,9 @@ opacity:1;
 /* MODAL CONTENT SCROLL */
 
 #modalContent{
+max-height:70vh;
 overflow-y:auto;
-margin-top:20px;
-padding-right:10px;
+padding-right:5px;
 }
 
 /* GRID MENU POPUP */
@@ -341,4 +341,5 @@ transition:0.3s;
 .wa-float:hover{
 transform:scale(1.1);
 }
+
 
