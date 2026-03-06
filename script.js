@@ -13,14 +13,23 @@ const intro = document.getElementById("intro");
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
-window.addEventListener("load", () => {
-    setTimeout(() => {
+document.addEventListener("DOMContentLoaded", function () {
+
+const intro = document.getElementById("intro");
+
+if(intro){
+    setTimeout(()=>{
         intro.style.opacity = "0";
         intro.style.pointerEvents = "none";
-        setTimeout(()=> intro.style.display = "none", 800);
-    }, 1200);
-});
 
+        setTimeout(()=>{
+            intro.style.display = "none";
+        },600);
+
+    },1500);
+}
+
+});
 /* ===============================
    UNIVERSAL MODAL
 ================================ */
@@ -215,6 +224,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
         </a>
     `);
 });
+
 
 
 
