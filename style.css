@@ -278,8 +278,8 @@ transform:translate(-50%,-50%) scale(4.5);
 background:#black;
 padding:40px;
 border-radius:50px;
-width:40%;
-max-width:900px;
+width:90%;
+max-width:500px;
 
 opacity:0;
 transition:0.3s;
@@ -799,6 +799,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
