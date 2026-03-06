@@ -277,8 +277,8 @@ transform: translate(-10%,-10%);
 }
 
 background: black;
-padding: 40px;
-border-radius: 90px;
+padding: 100px;
+border-radius: 10px;
 width: 90%;
 max-width: 500px;
 
@@ -796,6 +796,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
