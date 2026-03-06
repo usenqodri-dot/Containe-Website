@@ -270,23 +270,19 @@ transform:translateY(0);
 }
 /* PREMIUM MODAL */
 .modal{
-position:absolute;
-top:20%;
-left:50%;
-transform:translate(-50%,-50%) scale(1);
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 
-background:#black;
-padding:40px;
-border-radius:50px;
-width:200%;
-max-width:500px;
+background: white;
+padding: 40px;
+border-radius: 12px;
+width: 90%;
+max-width: 500px;
 
-opacity:0;
-transition:0.3s;
-
-z-index:1000;
+z-index: 1000;
 }
-
 .modal.active{
 opacity:1;
 transform:translate(-50%,-50%) scale(1);
@@ -799,6 +795,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
