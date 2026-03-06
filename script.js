@@ -13,21 +13,11 @@ const intro = document.getElementById("intro");
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
-document.addEventListener("DOMContentLoaded", function () {
-
-const intro = document.getElementById("intro");
-
-if(intro){
-    setTimeout(()=>{
-        intro.style.opacity = "0";
-        intro.style.pointerEvents = "none";
-
-        setTimeout(()=>{
-            intro.style.display = "none";
-        },600);
-
-    },1500);
-}
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},1500);
+});
 
 });
 /* ===============================
@@ -224,6 +214,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
         </a>
     `);
 });
+
 
 
 
