@@ -26,7 +26,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-transition:0.8s;
+transition:0.5s;
 }
 
 .intro-content{
@@ -393,6 +393,7 @@ opacity:1;
 visibility:visible;
 pointer-events:auto;
 }
+
 
 
 
