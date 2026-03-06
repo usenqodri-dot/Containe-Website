@@ -217,17 +217,4 @@ document.getElementById("openWA").addEventListener("click", ()=>{
 });
 
 });
-/* CLOSE MODAL JIKA KLIK LUAR */
-
-overlay.addEventListener("click", function(){
-overlay.classList.remove("active");
-modal.classList.remove("active");
-});
-
-/* CLOSE MODAL TOMBOL X */
-
-closeModal.addEventListener("click", function(){
-overlay.classList.remove("active");
-modal.classList.remove("active");
-});
 
