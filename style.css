@@ -271,9 +271,9 @@ transform:translateY(0);
 /* PREMIUM MODAL */
 .modal{
 position:fixed;
-top:0%;
+top:100%;
 left:50%;
-transform:translate(-50%,-50%) scale(0.9);
+transform:translate(-50%,-50%) scale(1.5);
 
 background:#fff;
 padding:40px;
@@ -799,6 +799,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
