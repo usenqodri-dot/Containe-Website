@@ -162,9 +162,10 @@ font-family:'Cinzel';
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
-margin:auto;
+}
+.products{
 background:#111;
 border-radius:20px;
 overflow:hidden;
@@ -196,7 +197,6 @@ text-align:center;
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
 gap:30px;
-margin:auto;
 }
 
 .menu-item{
@@ -290,16 +290,13 @@ padding-right:10px;
 
 .menu-popup-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
 gap:20px;
 margin-top:20px;
 width:100%;
 max-width:900px;
 margin-left:auto;
 margin-right:auto;
-}
-
-.menu-popup-card{
 background:#161616;
 border-radius:15px;
 overflow:hidden;
@@ -379,6 +376,7 @@ opacity:1;
 visibility:visible;
 pointer-events:auto;
 }
+
 
 
 
