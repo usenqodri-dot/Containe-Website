@@ -271,10 +271,8 @@ transform:translateY(0);
 /* PREMIUM MODAL */
 .modal{
 position:absolute;
-top:50%;
+top:20%;
 left:50%;
-right:50%;
-bottom:50%;
 transform:translate(-50%,-50%) scale(1);
 
 background:#black;
@@ -801,6 +799,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
