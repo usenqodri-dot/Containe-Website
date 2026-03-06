@@ -273,7 +273,7 @@ transform:translateY(0);
 position:absolute;
 top:50%;
 left:50%;
-transform:translate(-50%,-50%) scale(4.5);
+transform:translate(-50%,-50%) scale(1);
 
 background:#black;
 padding:40px;
@@ -289,7 +289,7 @@ z-index:1000;
 
 .modal.active{
 opacity:1;
-transform:translate(-50%,-50%) scale(4.5);
+transform:translate(-50%,-50%) scale(1);
 }
 
 .close{
@@ -799,6 +799,7 @@ body.modal-lock {
         transform: translateY(0);
     }
 }
+
 
 
 
