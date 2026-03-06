@@ -172,31 +172,73 @@ font-family:'Cinzel';
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,250px);
+justify-content:center;
 gap:30px;
+margin-top:40px;
 }
-
 .product{
+position:relative;
 background:#111;
 border-radius:20px;
 overflow:hidden;
-transition:0.4s;
+transition:all .45s cubic-bezier(.4,0,.2,1);
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.05);
 }
 
 .product img{
 width:100%;
 height:220px;
 object-fit:cover;
+transition:transform .6s ease;
 }
 
 .product h3{
 padding:20px;
+font-size:18px;
 }
+
+/* hover lift */
 
 .product:hover{
-transform:translateY(-10px);
+transform:translateY(-12px) scale(1.02);
+box-shadow:0 25px 60px rgba(0,0,0,0.6);
 }
 
+/* image zoom */
+
+.product:hover img{
+transform:scale(1.08);
+}
+
+/* glow border */
+
+.product::before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:20px;
+padding:1px;
+
+background:linear-gradient(120deg,
+transparent,
+rgba(255,255,255,0.25),
+transparent);
+
+opacity:0;
+transition:.4s;
+}
+
+.product:hover::before{
+opacity:1;
+}
+
+/* click effect */
+
+.product:active{
+transform:scale(.97);
+}
 /* MENU */
 
 .menu{
@@ -361,4 +403,110 @@ transition:0.3s;
 .wa-float:hover{
 transform:scale(1.1);
 }
+.menu-grid{
+color:white;
+}
 
+.menu-grid-item{
+background:#1c1c1c;
+border:1px solid #333;
+}
+/* OVERLAY BLUR BACKGROUND */
+.overlay{
+    position: fixed;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    background: rgba(0,0,0,0.35);
+
+    z-index:1500;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition: all .3s ease;
+}
+
+/* OVERLAY ACTIVE */
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+/* ================= PROJECT MODAL ================= */
+
+.project-modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(8px);
+
+opacity:0;
+visibility:hidden;
+transition:0.35s;
+
+z-index:2100;
+}
+
+.project-modal.active{
+opacity:1;
+visibility:visible;
+}
+
+/* BOX */
+
+.project-box{
+width:90%;
+max-width:900px;
+max-height:80vh;
+
+background:#111;
+border-radius:20px;
+
+padding:40px;
+
+overflow-y:auto;
+
+box-shadow:0 30px 100px rgba(0,0,0,0.8);
+
+animation:projectFade .4s ease;
+}
+
+@keyframes projectFade{
+from{
+opacity:0;
+transform:scale(.9);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+/* CLOSE */
+
+.project-close{
+position:absolute;
+top:20px;
+right:25px;
+font-size:24px;
+cursor:pointer;
+opacity:.7;
+}
+
+.project-close:hover{
+opacity:1;
+}
