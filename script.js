@@ -201,19 +201,28 @@ closeProjectBtn.addEventListener("click", ()=>{
    WHATSAPP POPUP
 ================================ */
 document.getElementById("openWA").addEventListener("click", ()=>{
-    openModal(`
-        <h2 style="font-family:Cinzel;">Contact Us</h2>
+  openModal(`
 
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/qr/Q36BMYAWGK2TF1">
+<div class="wa-popup">
 
-        <a href="https://wa.me/qr/Q36BMYAWGK2TF1"
-           target="_blank"
-           style="display:inline-block;margin-top:15px;padding:10px 20px;
-           background:#c6a15b;color:black;border-radius:20px;text-decoration:none;">
-           Open WhatsApp
-        </a>
-    `);
-});
+<h2 class="wa-title">Contact Us</h2>
+
+<div class="qr-box">
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://wa.me/qr/Q36BMYAWGK2TF1">
+
+</div>
+
+<a href="https://wa.me/qr/Q36BMYAWGK2TF1"
+target="_blank"
+class="wa-btn">
+Open WhatsApp
+</a>
+
+</div>
+
+`);
+
 
 
 
