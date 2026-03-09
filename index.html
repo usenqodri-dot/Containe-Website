@@ -15,8 +15,17 @@
 
 <body>
 
+<!-- ================= INTRO LOADING ================= -->
 <!-- INTRO -->
 <div id="intro">
+    <div class="intro-content">
+        <img src="containe.png" alt="Containè Logo">
+        <div class="loader-line"></div>
+    </div>
+  <div class="intro-content">
+    <img src="containe.png" alt="Containè">
+    <div class="loader-line"></div>
+  </div>
 <div class="intro-content">
 <img src="containe.png" alt="Containè">
 <div class="loader-line"></div>
@@ -24,8 +33,27 @@
 </div>
 
 
+<!-- ================= HEADER ================= -->
 <!-- HEADER -->
 <header>
+    <div class="brand">
+        <img src="containe.png" alt="Containè">
+        <span>Containè</span>
+    </div>
+    <nav>
+        <a href="#projects">Projects</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+    </nav>
+  <div class="brand">
+    <img src="containe.png" alt="Containè">
+    <span>Containè</span>
+  </div>
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
 <div class="brand">
 <img src="containe.png">
@@ -40,20 +68,51 @@
 
 </header>
 
+<!-- ================= HERO ================= -->
 
 <!-- HERO -->
 <section class="hero">
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="https://cdn.coverr.co/videos/coverr-coffee-being-poured-into-a-cup-1560/1080p.mp4" type="video/mp4">
+    </video>
 
-<img src="https://images.unsplash.com/photo-1753572736770-6abc29d123d8?q=80&w=1171&auto=format&fit=crop"
-class="hero-bg">
+    <div class="hero-content">
+        <img src="containe.png" class="hero-logo">
+        <h1>Containè</h1>
+        <p>Mind in Motion</p>
+        <a href="#menu" class="btn" id="exploreBtn">Explore Menu</a>
+    </div>
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="https://cdn.coverr.co/videos/coverr-coffee-being-poured-into-a-cup-1560/1080p.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <img src="containe.png" class="hero-logo">
+    <h1>Containè</h1>
+    <p>Mind in Motion</p>
+    <a href="#menu" class="btn" id="exploreBtn">Explore Menu</a>
+  </div>
+
+<video autoplay muted loop playsinline class="bg-video">
+<source src="https://cdn.coverr.co/videos/coverr-coffee-being-poured-into-a-cup-1560/1080p.mp4" type="video/mp4">
+</video>
+
 <div class="hero-content">
-<img src="./containe.png" class="hero-logo" alt="Containè Logo">
+
+<img src="containe.png" class="hero-logo">
+
 <h1>Containè</h1>
+
 <p>Mind in Motion</p>
-<a href="#menu" class="hero-btn">Explore Menu</a>
+
+<a href="#menu" class="btn" id="exploreBtn">Explore Menu</a>
+
 </div>
+
 </section>
 
+<!-- ================= PROJECTS ================= -->
+<!-- PROJECT -->
 
 <!-- PROJECTS -->
 <section id="projects" class="section">
@@ -61,6 +120,25 @@ class="hero-bg">
 <h2>Projects</h2>
 
 <div class="products">
+  <div class="product project-trigger" data-project="coffee">
+    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80">
+    <h3>Coffee Concept</h3>
+  </div>
+
+    <div class="product project-trigger" data-project="coffee">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&q=80">
+        <h3>Coffee Concept</h3>
+    </div>
+
+    <div class="product project-trigger" data-project="brand">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80">
+        <h3>Brand Identity</h3>
+    </div>
+
+  <div class="product project-trigger" data-project="brand">
+    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80">
+    <h3>Brand Identity</h3>
+  </div>
 
 <div class="product project-trigger" data-project="coffee">
 
@@ -82,6 +160,7 @@ class="hero-bg">
 
 </section>
 
+<!-- ================= MENU ================= -->
 
 <!-- MENU -->
 <section id="menu" class="menu">
@@ -114,6 +193,7 @@ class="hero-bg">
 
 </section>
 
+<!-- ================= FOOTER ================= -->
 
 <!-- FOOTER -->
 <footer id="contact">
@@ -122,25 +202,45 @@ class="hero-bg">
 
 </footer>
 
+<!-- ================= WHATSAPP FLOAT ================= -->
 
 <!-- WA BUTTON -->
 <div class="wa-float" id="openWA">Contact</div>
+<div class="wa-float">Contact</div>
 
+<!-- ================= UNIVERSAL MODAL ================= -->
 
 <!-- UNIVERSAL MODAL -->
 <div class="overlay" id="overlay"></div>
 
 <div class="modal" id="modal">
-
-<span class="close" id="closeModal">&times;</span>
-
-<div id="modalContent"></div>
-
+    <span class="close" id="closeModal">&times;</span>
+    <div id="modalContent"></div>
+  <span class="close" id="closeModal">&times;</span>
+  <div id="modalContent"></div>
 </div>
 
+<!-- ================= PROJECT CINEMATIC MODAL ================= -->
+<div id="projectModal" class="project-modal">
+<span class="close" id="closeModal">&times;</span>
+
+  <div class="project-box" id="projectContent">
+<div id="modalContent"></div>
+
+    <div class="project-blur-layer"></div>
+</div>
+
+    <div class="project-inner">
+      <span class="project-close" id="closeProjectBtn">✕</span>
+      <div id="projectText" class="project-text"></div>
+    </div>
 
 <!-- PROJECT MODAL -->
 <div class="project-modal" id="projectModal">
+  <div class="project-box">
+    <span class="project-close" id="closeProjectBtn">✕</span>
+    <div id="projectText"></div>
+  </div>
 
 <div class="project-box" id="projectContent">
 
@@ -157,7 +257,3 @@ class="hero-bg">
 
 </body>
 </html>
-
-
-
-
