@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function(){
 /* ===============================
    ELEMENT SELECTOR
 ================================ */
+
 const overlay = document.getElementById("overlay");
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modalContent");
@@ -13,12 +14,11 @@ const intro = document.getElementById("intro");
 /* ===============================
    INTRO LOADING ANIMATION
 ================================ */
+
 window.addEventListener("load",()=>{
 setTimeout(()=>{
-document.getElementById("intro").style.display="none";
+intro.style.display="none";
 },1500);
-});
-
 });
 /* ===============================
    UNIVERSAL MODAL
@@ -222,6 +222,7 @@ Open WhatsApp
 </div>
 
 `);
+
 
 
 
