@@ -641,3 +641,62 @@ animation:scrollMove 2s infinite;
 100%{opacity:0; top:18px;}
 
 }
+/* WHATSAPP POPUP */
+
+.wa-popup{
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+gap:20px;
+}
+
+/* TITLE */
+
+.wa-title{
+font-family:'Cinzel';
+font-size:26px;
+}
+
+/* QR BOX */
+
+.qr-box{
+padding:15px;
+background:#1a1a1a;
+border-radius:14px;
+border:1px solid rgba(255,255,255,0.08);
+
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* QR IMAGE */
+
+.qr-box img{
+width:220px;
+height:220px;
+display:block;
+border-radius:6px;
+}
+
+/* BUTTON */
+
+.wa-btn{
+display:inline-block;
+padding:12px 28px;
+
+background:linear-gradient(135deg,#c6a15b,#f5d48c);
+color:black;
+
+border-radius:30px;
+font-weight:600;
+text-decoration:none;
+
+transition:0.3s;
+}
+
+/* BUTTON HOVER */
+
+.wa-btn:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(198,161,91,0.5);
+}
