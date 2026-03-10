@@ -46,45 +46,42 @@
 
 <div class="hero-card glass">
 
+<img src="containe.png" class="hero-logo">
+
 <h1>Premium Coffee Experience</h1>
 
 <p>Fresh beans. Perfect brew. Modern ambience.</p>
 
-<button class="glass-btn">Explore Menu</button>
+<button class="glass-btn explore-btn">Explore Menu</button>
 
 </div>
 
 </section>
 
-
 <section id="menu" class="menu-section">
 
 <h2 class="section-title">Signature Drinks</h2>
 
-<div class="menu-grid">
+<div class="category-grid">
 
-<div class="menu-card glass">
-<h3>Palm Sugar Latte</h3>
-<p>Espresso, palm sugar, milk</p>
-<span>Rp28K</span>
+<div class="category-card glass" data-category="coffee">
+Coffee Series
 </div>
 
-<div class="menu-card glass">
-<h3>Espresso</h3>
-<p>Pure arabica shot</p>
-<span>Rp18K</span>
+<div class="category-card glass" data-category="noncoffee">
+Non Coffee Series
 </div>
 
-<div class="menu-card glass">
-<h3>Cappuccino</h3>
-<p>Espresso + milk foam</p>
-<span>Rp25K</span>
+<div class="category-card glass" data-category="tea">
+Tea Series
 </div>
 
-<div class="menu-card glass">
-<h3>Manual Brew</h3>
-<p>V60 / Japanese brew</p>
-<span>Rp30K</span>
+<div class="category-card glass" data-category="signature">
+Signature Series
+</div>
+
+<div class="category-card glass" data-category="snack">
+Food / Snack
 </div>
 
 </div>
@@ -94,16 +91,16 @@
 
 <section id="gallery">
 
-<h2 class="section-title">Coffee Moments</h2>
+<h2 class="section-title center">Coffee Moments</h2>
 
-<div class="gallery">
+<div class="gallery-grid">
 
 <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+<img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c">
 <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
 <img src="https://images.unsplash.com/photo-1509785307050-d4066910ec1e">
 <img src="https://images.unsplash.com/photo-1507914372368-b2b085b925a1">
-<img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31">
-<img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c">
 
 </div>
 
@@ -137,7 +134,41 @@
 
 
 <script src="script.js"></script>
+<div class="menu-popup hidden">
 
+<div class="popup-content glass">
+
+<span class="close-popup">✕</span>
+
+<h2 id="popup-title"></h2>
+
+<div id="menu-grid"></div>
+
+</div>
+
+</div>
+
+
+<div class="menu-detail hidden">
+
+<div class="detail-content glass">
+
+<span class="close-detail">✕</span>
+
+<img id="detail-img">
+
+<h3 id="detail-name"></h3>
+
+<p id="detail-desc"></p>
+
+<p id="detail-price"></p>
+
+<button class="glass-btn">Add to Cart</button>
+
+</div>
+
+</div>
 </body>
 
 </html>
+
