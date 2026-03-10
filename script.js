@@ -1,7 +1,8 @@
+document.addEventListener("DOMContentLoaded", function(){
+
 /* ===============================
    ELEMENT SELECTOR
 ================================ */
-
 const overlay = document.getElementById("overlay");
 const modal = document.getElementById("modal");
 const modalContent = document.getElementById("modalContent");
@@ -9,67 +10,49 @@ const closeModal = document.getElementById("closeModal");
 const exploreBtn = document.getElementById("exploreBtn");
 const intro = document.getElementById("intro");
 
-const projectModal = document.getElementById("projectModal");
-const projectText = document.getElementById("projectText");
-const projectContent = document.querySelector(".project-box");
-const closeProjectBtn = document.getElementById("closeProjectBtn");
-
 /* ===============================
-   INTRO LOADING
+   INTRO LOADING ANIMATION
 ================================ */
-
-window.addEventListener("load", () => {
-setTimeout(() => {
-intro.style.display = "none";
-}, 1500);
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},1500);
 });
 
+});
 /* ===============================
    UNIVERSAL MODAL
 ================================ */
-
 function openModal(html){
-
-modalContent.innerHTML = html;
-
-overlay.classList.add("active");
-modal.classList.add("active");
-
-document.body.classList.add("modal-open");
-
+    modalContent.innerHTML = html;
+    overlay.classList.add("active");
+    modal.classList.add("active");
+    document.body.classList.add("modal-open"); // TAMBAHAN
 }
 
 function closeModalFunc(){
-
-overlay.classList.remove("active");
-modal.classList.remove("active");
-
-document.body.classList.remove("modal-open");
-
+    overlay.classList.remove("active");
+    modal.classList.remove("active");
+    document.body.classList.remove("modal-open"); // TAMBAHAN
 }
 
 overlay.addEventListener("click", closeModalFunc);
 closeModal.addEventListener("click", closeModalFunc);
 
 /* ===============================
-   EXPLORE BUTTON
+   EXPLORE BUTTON FIX
 ================================ */
-
 exploreBtn.addEventListener("click", function(e){
-
-e.preventDefault();
-
-document.getElementById("menu").scrollIntoView({
-behavior:"smooth",
-block:"start"
-});
-
+    e.preventDefault();
+    document.getElementById("menu").scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 });
 
 /* ===============================
    MENU DATA
 ================================ */
-
 const menuData = {
 
 coffee:[
@@ -103,160 +86,136 @@ snack:[
 /* ===============================
    CATEGORY CLICK
 ================================ */
-
 document.querySelectorAll(".category-card").forEach(card=>{
+    card.addEventListener("click",()=>{
 
-card.addEventListener("click",()=>{
+        const category = card.dataset.category;
+        const title = card.querySelector("h3").innerText;
 
-const category = card.dataset.category;
-const title = card.querySelector("h3").innerText;
+        let html = `
+        <h2 style="font-family:Cinzel;margin-bottom:25px;">${title}</h2>
+        <div class="menu-popup-grid">
+        `;
 
-let html = `
-<h2 style="font-family:Cinzel;margin-bottom:25px;">${title}</h2>
-<div class="menu-popup-grid">
-`;
+        menuData[category].forEach(item=>{
 
-menuData[category].forEach(item=>{
+            const keyword = item.replace(/\s/g,'-');
 
-html += `
-<div class="menu-popup-card" data-item="${item}">
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
-onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80'">
-<h4>${item}</h4>
-</div>
-`;
+            html += `
+            <div class="menu-popup-card" data-item="${item}">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
+                     onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80'">
+                <h4>${item}</h4>
+            </div>
+            `;
+        });
 
-});
+        html += `</div>`;
 
-html += `</div>`;
+        openModal(html);
 
-openModal(html);
+        // Add click event for each menu item
+        document.querySelectorAll(".menu-popup-card").forEach(card=>{
+            card.addEventListener("click", ()=>{
+                showDetail(card.dataset.item);
+            });
+        });
 
-/* MENU ITEM CLICK */
-
-document.querySelectorAll(".menu-popup-card").forEach(card=>{
-
-card.addEventListener("click", ()=>{
-
-showDetail(card.dataset.item);
-
-});
-
-});
-
-});
-
+    });
 });
 
 /* ===============================
    DETAIL POPUP
 ================================ */
-
 function showDetail(name){
 
-openModal(`
+    const keyword = name.replace(/\s/g,'-');
 
-<h2 style="font-family:Cinzel;">${name}</h2>
+    openModal(`
+        <h2 style="font-family:Cinzel;">${name}</h2>
 
-<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
-onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
+             onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'">
 
-<p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
+        <p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
 
-<ul style="margin-top:15px;line-height:1.8;">
-<li>Premium selected ingredient</li>
-<li>Fresh daily preparation</li>
-<li>High quality base material</li>
-</ul>
-
-`);
-
+        <ul style="margin-top:15px;line-height:1.8;">
+            <li>Premium selected ingredient</li>
+            <li>Fresh daily preparation</li>
+            <li>High quality base material</li>
+        </ul>
+    `);
 }
 
 /* ===============================
    PROJECT MODAL
 ================================ */
+const projectModal = document.getElementById("projectModal");
+const projectContent = document.getElementById("projectContent");
+const projectText = document.getElementById("projectText");
+const closeProjectBtn = document.getElementById("closeProjectBtn");
 
 document.querySelectorAll(".project-trigger").forEach(card=>{
+    card.addEventListener("click", ()=>{
+        const type = card.dataset.project;
 
-card.addEventListener("click", ()=>{
+        projectModal.classList.add("active");
 
-const type = card.dataset.project;
+        if(type === "coffee"){
+            projectContent.style.backgroundImage =
+            "url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&q=80')";
+            projectText.innerHTML = `
+                <h2>Coffee Concept</h2>
+                <p>
+                Containè melihat kopi sebagai pengalaman,
+                bukan sekadar minuman. Setiap cangkir
+                dirancang menghadirkan aroma, karakter,
+                dan suasana elegan.
+                </p>
+            `;
+        }
 
-projectModal.classList.add("active");
+        if(type === "brand"){
+            projectContent.style.backgroundImage =
+            "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80')";
+            projectText.innerHTML = `
+                <h2>Brand Identity</h2>
+                <p>
+                Containè adalah brand kopi premium
+                dengan identitas modern dan minimalis
+                yang menciptakan pengalaman tak terlupakan.
+                </p>
+            `;
+        }
 
-if(type === "coffee"){
-
-projectContent.style.backgroundImage =
-"url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&q=80')";
-
-projectText.innerHTML = `
-<h2>Coffee Concept</h2>
-<p>
-Containè melihat kopi sebagai pengalaman,
-bukan sekadar minuman. Setiap cangkir
-dirancang menghadirkan aroma, karakter,
-dan suasana elegan.
-</p>
-`;
-
-}
-
-if(type === "brand"){
-
-projectContent.style.backgroundImage =
-"url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80')";
-
-projectText.innerHTML = `
-<h2>Brand Identity</h2>
-<p>
-Containè adalah brand kopi premium
-dengan identitas modern dan minimalis
-yang menciptakan pengalaman tak terlupakan.
-</p>
-`;
-
-}
-
-document.body.classList.add("blurred");
-
+        document.body.classList.add("blurred");
+    });
 });
-
-});
-
-/* CLOSE PROJECT MODAL */
 
 closeProjectBtn.addEventListener("click", ()=>{
-
-projectModal.classList.remove("active");
-document.body.classList.remove("blurred");
-
+    projectModal.classList.remove("active");
+    document.body.classList.remove("blurred");
 });
 
 /* ===============================
    WHATSAPP POPUP
 ================================ */
-
 document.getElementById("openWA").addEventListener("click", ()=>{
+    openModal(`
+        <h2 style="font-family:Cinzel;">Contact Us</h2>
 
-openModal(`
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/qr/Q36BMYAWGK2TF1">
 
-<div class="wa-popup">
-
-<h2 class="wa-title">Contact Us</h2>
-
-<div class="qr-box">
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://wa.me/qr/Q36BMYAWGK2TF1">
-</div>
-
-<a href="https://wa.me/qr/Q36BMYAWGK2TF1"
-target="_blank"
-class="wa-btn">
-Open WhatsApp
-</a>
-
-</div>
-
-`);
-
+        <a href="https://wa.me/qr/Q36BMYAWGK2TF1"
+           target="_blank"
+           style="display:inline-block;margin-top:15px;padding:10px 20px;
+           background:#c6a15b;color:black;border-radius:20px;text-decoration:none;">
+           Open WhatsApp
+        </a>
+    `);
 });
+
+
+
+
+
