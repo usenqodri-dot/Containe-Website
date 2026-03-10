@@ -97,43 +97,40 @@ if (exploreBtn) {
 // MENU DATA
 // ===============================
 
-const menuData = {
+const menuData={
 
 coffee:[
-"Espresso","Ristretto","Sanger","Latte","Black Coffee","V60",
-"Japanese","Cappuccino","Honey Latte","Coconut Latte",
-"Hazelnut Latte","Vanilla Latte","Caramel Latte",
-"Tiramisu Mocha Latte","Butterscotch Aren Latte",
-"Pistachio Latte","Coffemalatte","Mocha Latte","Spanish Latte"
+{name:"Espresso",price:18000,img:"espresso"},
+{name:"Latte",price:25000,img:"latte"},
+{name:"Cappuccino",price:25000,img:"cappuccino"},
+{name:"V60",price:28000,img:"pour-over"},
+{name:"Spanish Latte",price:28000,img:"spanish latte"}
 ],
 
 noncoffee:[
-"Matcha","Matcha Latte","Matcha Milk Shake","Chocolatte",
-"Chocolate Milk Shake","Red Velvet","Ice Shaken Lemon Tea",
-"Fresh Lemonade","Hazelnut Coco","Fresh Peach",
-"Vanilla Milk Shake","Butterscotch Sea Salt Crumble","Baby Chinno"
+{name:"Matcha Latte",price:26000,img:"matcha latte"},
+{name:"Chocolate Milk Shake",price:27000,img:"chocolate milkshake"},
+{name:"Red Velvet",price:26000,img:"red velvet drink"}
 ],
 
 tea:[
-"Lavender Tea","Earl Grey Tea","Kyoto Japanese Tea",
-"Black Tea","Peppermint Tea","Thai Tea",
-"Hazelnut Tea","Peach Tea"
+{name:"Earl Grey Tea",price:20000,img:"earl grey tea"},
+{name:"Thai Tea",price:22000,img:"thai tea"},
+{name:"Peach Tea",price:22000,img:"peach tea"}
 ],
 
 snack:[
-"Waffle","Sosis","Chicken Nuggets","Mixed Platter",
-"Sandwich","French Fries"
+{name:"Waffle",price:25000,img:"waffle"},
+{name:"French Fries",price:20000,img:"french fries"},
+{name:"Chicken Nuggets",price:22000,img:"nuggets"}
 ],
 
 signature:[
-"Containe Signature",
-"Concat Signature",
-"House Blend Signature"
+{name:"Containe Signature",price:30000,img:"special coffee"},
+{name:"Concat Signature",price:30000,img:"coffee latte"}
 ]
 
-};
-
-
+}
 
 // ===============================
 // POPUP MENU CATEGORY
@@ -155,29 +152,31 @@ document.querySelectorAll(".category-card").forEach(card => {
 
     menuGrid.innerHTML = "";
 
-    menuData[category].forEach(menu => {
+    menuData[category].forEach(menu=>{
 
-      const item = document.createElement("div");
+const item=document.createElement("div")
+item.className="menu-item glass"
 
-      item.className = "menu-item glass";
+const img=document.createElement("img")
+img.src=`https://source.unsplash.com/400x300/?${menu.img}`
 
-      item.textContent = menu;
+const name=document.createElement("h4")
+name.innerText=menu.name
 
-      item.addEventListener("click", () => {
-        openDetail(menu);
-      });
+const price=document.createElement("p")
+price.innerText="Rp "+menu.price
 
-      menuGrid.appendChild(item);
+item.appendChild(img)
+item.appendChild(name)
+item.appendChild(price)
 
-    });
+item.addEventListener("click",()=>{
+openDetail(menu)
+})
 
-    popup.classList.remove("hidden");
+menuGrid.appendChild(item)
 
-  });
-
-});
-
-
+})
 
 // ===============================
 // CLOSE POPUP
@@ -201,28 +200,29 @@ if (closePopup) {
 // MENU DETAIL POPUP
 // ===============================
 
-const detailPopup = document.querySelector(".menu-detail");
+let currentMenu = null;
 
-function openDetail(name) {
+function openDetail(menu){
 
-  const img = document.querySelector("#detail-img");
-  const title = document.querySelector("#detail-name");
-  const desc = document.querySelector("#detail-desc");
-  const price = document.querySelector("#detail-price");
+const img = document.querySelector("#detail-img")
+const title = document.querySelector("#detail-name")
+const desc = document.querySelector("#detail-desc")
+const price = document.querySelector("#detail-price")
 
-  title.textContent = name;
+title.innerText = menu.name
 
-  desc.textContent =
-    "Rich coffee flavor with smooth texture and balanced sweetness.";
+desc.innerText =
+"Signature drink with balanced sweetness and smooth texture."
 
-  price.textContent = "Price : Rp25.000";
+price.innerText = "Rp " + menu.price
 
-  img.src = "https://source.unsplash.com/600x400/?coffee";
+img.src = `https://source.unsplash.com/600x400/?${menu.img}`
 
-  detailPopup.classList.remove("hidden");
+detailPopup.classList.remove("hidden")
+
+currentMenu = menu
 
 }
-
 
 
 // ===============================
@@ -284,3 +284,42 @@ document.querySelectorAll(".gallery-grid img").forEach(img => {
 
 
 });
+  let cart=[]
+let currentMenu=null
+
+const cartCount=document.querySelector("#cart-count")
+
+document.querySelector(".detail-content button")
+.addEventListener("click",()=>{
+
+if(!currentMenu) return
+
+cart.push(currentMenu)
+
+cartCount.innerText=cart.length
+
+})
+  const waBtn=document.querySelector("#whatsapp-order")
+
+waBtn.addEventListener("click",()=>{
+
+if(cart.length===0){
+
+alert("Cart kosong")
+
+return
+
+}
+
+let message="Halo saya ingin order:%0A"
+
+cart.forEach(item=>{
+message+=`- ${item.name} Rp${item.price}%0A`
+})
+
+const phone="081770732197"
+
+window.open(`https://wa.me/${phone}?text=${message}`)
+
+})
+
