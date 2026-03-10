@@ -1,6 +1,3 @@
-/* ===============================
-ELEMENT SELECTOR
-=============================== */
 
 const overlay = document.getElementById("overlay");
 const modal = document.getElementById("modal");
@@ -116,8 +113,8 @@ document.querySelectorAll(".category-card").forEach(card=>{
 card.addEventListener("click",()=>{
 
 const category = card.dataset.category
-const title = card.querySelector("h3").innerText
-
+const titleElement = card.querySelector("h3")
+const title = titleElement ? titleElement.innerText : "Menu"
 let html = `<h2>${title}</h2>`
 
 menuData[category].forEach(item=>{
@@ -228,3 +225,4 @@ openModal(`
 })
 
 }
+
