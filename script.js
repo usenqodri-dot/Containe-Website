@@ -154,8 +154,9 @@ const projectModal = document.getElementById("projectModal");
 const projectContent = document.getElementById("projectContent");
 const projectText = document.getElementById("projectText");
 const closeProjectBtn = document.getElementById("closeProjectBtn");
+const projects = document.querySelectorAll(".project-trigger")
 
-document.querySelectorAll(".project-trigger").forEach(card=>{
+projects.forEach(card => {
     card.addEventListener("click", ()=>{
         const type = card.dataset.project;
 
@@ -214,6 +215,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
         </a>
     `);
 });
+
 
 
 
