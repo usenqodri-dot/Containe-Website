@@ -1,218 +1,177 @@
-document.addEventListener("DOMContentLoaded", function(){
+// ==============================
+// MOBILE MENU TOGGLE
+// ==============================
 
-/* ===============================
-   ELEMENT SELECTOR
-================================ */
-const overlay = document.getElementById("overlay");
-const modal = document.getElementById("modal");
-const modalContent = document.getElementById("modalContent");
-const closeModal = document.getElementById("closeModal");
-const exploreBtn = document.getElementById("exploreBtn");
-const intro = document.getElementById("intro");
+const toggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".nav-links");
 
-/* ===============================
-   INTRO LOADING ANIMATION
-================================ */
-window.addEventListener("load",()=>{
-setTimeout(()=>{
-document.getElementById("intro").style.display="none";
-},1500);
-});
+if (toggle && nav) {
+
+toggle.addEventListener("click", () => {
+
+nav.classList.toggle("active");
 
 });
-/* ===============================
-   UNIVERSAL MODAL
-================================ */
-function openModal(html){
-    modalContent.innerHTML = html;
-    overlay.classList.add("active");
-    modal.classList.add("active");
-    document.body.classList.add("modal-open"); // TAMBAHAN
+
 }
 
-function closeModalFunc(){
-    overlay.classList.remove("active");
-    modal.classList.remove("active");
-    document.body.classList.remove("modal-open"); // TAMBAHAN
-}
 
-overlay.addEventListener("click", closeModalFunc);
-closeModal.addEventListener("click", closeModalFunc);
 
-/* ===============================
-   EXPLORE BUTTON FIX
-================================ */
-exploreBtn.addEventListener("click", function(e){
-    e.preventDefault();
-    document.getElementById("menu").scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-    });
+// ==============================
+// SMOOTH SCROLL NAVIGATION
+// ==============================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+anchor.addEventListener("click", function(e) {
+
+const target = document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+e.preventDefault();
+
+target.scrollIntoView({
+behavior: "smooth",
+block: "start"
 });
 
-/* ===============================
-   MENU DATA
-================================ */
-const menuData = {
+}
 
-coffee:[
-"Espresso","Ristretto","Sanger","Latte","Black Coffee","V60",
-"Japanese","Cappuccino","Honey Latte","Coconut Latte",
-"Hazelnut Latte","Vanilla Latte","Caramel Latte",
-"Tiramisu Mocha Latte","Butterscotch Aren Latte",
-"Pistachio Latte","Coffemalatte","Mocha Latte","Spanish Latte"
-],
-
-noncoffee:[
-"Matcha","Matcha Latte","Matcha Milk Shake","Chocolatte",
-"Chocolate Milk Shake","Red Velvet","Ice Shaken Lemon Tea",
-"Fresh Lemonade","Hazelnut Coco","Fresh Peach",
-"Vanilla Milk Shake","Butterscotch Sea Salt Crumble","Baby Chinno"
-],
-
-tea:[
-"Lavender Tea","Earl Grey Tea","Kyoto Japanese Tea",
-"Black Tea","Peppermint Tea","Thai Tea",
-"Hazelnut Tea","Peach Tea"
-],
-
-snack:[
-"Waffle","Sosis","Chicken Nuggets","Mixed Platter",
-"Sandwich","French Fries"
-]
-
-};
-
-/* ===============================
-   CATEGORY CLICK
-================================ */
-document.querySelectorAll(".category-card").forEach(card=>{
-    card.addEventListener("click",()=>{
-
-        const category = card.dataset.category;
-        const title = card.querySelector("h3").innerText;
-
-        let html = `
-        <h2 style="font-family:Cinzel;margin-bottom:25px;">${title}</h2>
-        <div class="menu-popup-grid">
-        `;
-
-        menuData[category].forEach(item=>{
-
-            const keyword = item.replace(/\s/g,'-');
-
-            html += `
-            <div class="menu-popup-card" data-item="${item}">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&q=80"
-                     onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80'">
-                <h4>${item}</h4>
-            </div>
-            `;
-        });
-
-        html += `</div>`;
-
-        openModal(html);
-
-        // Add click event for each menu item
-        document.querySelectorAll(".menu-popup-card").forEach(card=>{
-            card.addEventListener("click", ()=>{
-                showDetail(card.dataset.item);
-            });
-        });
-
-    });
 });
 
-/* ===============================
-   DETAIL POPUP
-================================ */
-function showDetail(name){
-
-    const keyword = name.replace(/\s/g,'-');
-
-    openModal(`
-        <h2 style="font-family:Cinzel;">${name}</h2>
-
-        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80"
-             onerror="this.src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80'">
-
-        <p style="margin-top:15px;"><strong>Price:</strong> Rp 25.000</p>
-
-        <ul style="margin-top:15px;line-height:1.8;">
-            <li>Premium selected ingredient</li>
-            <li>Fresh daily preparation</li>
-            <li>High quality base material</li>
-        </ul>
-    `);
-}
-
-/* ===============================
-   PROJECT MODAL
-================================ */
-const projects = document.querySelectorAll(".project-trigger")
-const projectModal = document.getElementById("projectModal")
-const projectText = document.getElementById("projectText")
-const closeProjectBtn = document.getElementById("closeProjectBtn")
-
-projects.forEach(card => {
-
-  card.addEventListener("click", () => {
-
-    const type = card.dataset.project
-
-    if(type === "coffee"){
-      projectText.innerHTML = `
-      <h2>Coffee Concept</h2>
-      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=900">
-      <p>
-      Eksperimen konsep kopi modern dari Containè.
-      Menggabungkan estetika, rasa, dan pengalaman minum kopi premium.
-      </p>
-      `
-    }
-
-    if(type === "brand"){
-      projectText.innerHTML = `
-      <h2>Brand Identity</h2>
-      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900">
-      <p>
-      Eksplorasi visual brand Containè.
-      Fokus pada desain minimal, elegan, dan modern.
-      </p>
-      `
-    }
-
-    projectModal.classList.add("active")
-
-  })
-
-})
-
-closeProjectBtn.onclick = () => {
-  projectModal.classList.remove("active")
-}
-/* ===============================
-   WHATSAPP POPUP
-================================ */
-document.getElementById("openWA").addEventListener("click", ()=>{
-    openModal(`
-        <h2 style="font-family:Cinzel;">Contact Us</h2>
-
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://wa.me/qr/Q36BMYAWGK2TF1">
-
-        <a href="https://wa.me/qr/Q36BMYAWGK2TF1"
-           target="_blank"
-           style="display:inline-block;margin-top:15px;padding:10px 20px;
-           background:#c6a15b;color:black;border-radius:20px;text-decoration:none;">
-           Open WhatsApp
-        </a>
-    `);
 });
 
 
 
+// ==============================
+// NAVBAR GLASS EFFECT ON SCROLL
+// ==============================
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+if(!navbar) return;
+
+if(window.scrollY > 50){
+
+navbar.style.background = "rgba(20,20,20,0.55)";
+navbar.style.backdropFilter = "blur(18px)";
+
+}else{
+
+navbar.style.background = "rgba(255,255,255,0.08)";
+navbar.style.backdropFilter = "blur(12px)";
+
+}
+
+});
 
 
 
+// ==============================
+// SCROLL REVEAL ANIMATION
+// ==============================
 
+const revealElements = document.querySelectorAll(
+".menu-card, .hero-card, .visit-card, .gallery img"
+);
+
+const revealObserver = new IntersectionObserver((entries) => {
+
+entries.forEach(entry => {
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("reveal-active");
+
+}
+
+});
+
+},{
+threshold:0.15
+});
+
+revealElements.forEach(el => {
+
+revealObserver.observe(el);
+
+});
+
+
+
+// ==============================
+// GALLERY HOVER INTERACTION
+// ==============================
+
+const galleryImages = document.querySelectorAll(".gallery img");
+
+galleryImages.forEach(img => {
+
+img.addEventListener("mouseenter", () => {
+
+img.style.transform = "scale(1.05)";
+
+});
+
+img.addEventListener("mouseleave", () => {
+
+img.style.transform = "scale(1)";
+
+});
+
+});
+
+
+
+// ==============================
+// HERO BUTTON AUTO SCROLL
+// ==============================
+
+const heroBtn = document.querySelector(".hero .glass-btn");
+
+if(heroBtn){
+
+heroBtn.addEventListener("click", () => {
+
+const menu = document.querySelector("#menu");
+
+if(menu){
+
+menu.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+});
+
+}
+
+
+
+// ==============================
+// BASIC PERFORMANCE SAFETY
+// ==============================
+
+// prevent heavy scroll event execution
+
+let ticking = false;
+
+window.addEventListener("scroll", function(){
+
+if(!ticking){
+
+window.requestAnimationFrame(function(){
+
+ticking = false;
+
+});
+
+ticking = true;
+
+}
+
+});
