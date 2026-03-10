@@ -1,193 +1,103 @@
-// ==============================
+document.addEventListener("DOMContentLoaded", function () {
+
+
+// ===============================
 // MOBILE MENU TOGGLE
-// ==============================
+// ===============================
 
 const toggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav-links");
 
 if (toggle && nav) {
-
-toggle.addEventListener("click", () => {
-
-nav.classList.toggle("active");
-
-});
-
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+  });
 }
 
 
 
-// ==============================
-// SMOOTH SCROLL NAVIGATION
-// ==============================
+// ===============================
+// SMOOTH SCROLL NAV
+// ===============================
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-anchor.addEventListener("click", function(e) {
+  anchor.addEventListener("click", function (e) {
 
-const target = document.querySelector(this.getAttribute("href"));
+    const target = document.querySelector(this.getAttribute("href"));
 
-if(target){
+    if (target) {
+      e.preventDefault();
 
-e.preventDefault();
+      target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
 
-target.scrollIntoView({
-behavior: "smooth",
-block: "start"
-});
-
-}
-
-});
+  });
 
 });
 
 
 
-// ==============================
-// NAVBAR GLASS EFFECT ON SCROLL
-// ==============================
+// ===============================
+// NAVBAR BLUR ON SCROLL
+// ===============================
 
 const navbar = document.querySelector(".navbar");
 
 window.addEventListener("scroll", () => {
 
-if(!navbar) return;
+  if (!navbar) return;
 
-if(window.scrollY > 50){
+  if (window.scrollY > 50) {
 
-navbar.style.background = "rgba(20,20,20,0.55)";
-navbar.style.backdropFilter = "blur(18px)";
+    navbar.style.background = "rgba(20,20,20,0.6)";
+    navbar.style.backdropFilter = "blur(18px)";
 
-}else{
+  } else {
 
-navbar.style.background = "rgba(255,255,255,0.08)";
-navbar.style.backdropFilter = "blur(12px)";
+    navbar.style.background = "rgba(255,255,255,0.08)";
+    navbar.style.backdropFilter = "blur(12px)";
 
-}
-
-});
-
-
-
-// ==============================
-// SCROLL REVEAL ANIMATION
-// ==============================
-
-const revealElements = document.querySelectorAll(
-".menu-card, .hero-card, .visit-card, .gallery img"
-);
-
-const revealObserver = new IntersectionObserver((entries) => {
-
-entries.forEach(entry => {
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("reveal-active");
-
-}
-
-});
-
-},{
-threshold:0.15
-});
-
-revealElements.forEach(el => {
-
-revealObserver.observe(el);
+  }
 
 });
 
 
 
-// ==============================
-// GALLERY HOVER INTERACTION
-// ==============================
+// ===============================
+// EXPLORE MENU BUTTON
+// ===============================
 
-const galleryImages = document.querySelectorAll(".gallery img");
+const exploreBtn = document.querySelector(".explore-btn");
 
-galleryImages.forEach(img => {
+if (exploreBtn) {
 
-img.addEventListener("mouseenter", () => {
+  exploreBtn.addEventListener("click", () => {
 
-img.style.transform = "scale(1.05)";
+    const menuSection = document.querySelector("#menu");
 
-});
+    if (menuSection) {
 
-img.addEventListener("mouseleave", () => {
+      menuSection.scrollIntoView({
+        behavior: "smooth"
+      });
 
-img.style.transform = "scale(1)";
+    }
 
-});
-
-});
-
-
-
-// ==============================
-// HERO BUTTON AUTO SCROLL
-// ==============================
-
-const heroBtn = document.querySelector(".hero .glass-btn");
-
-if(heroBtn){
-
-heroBtn.addEventListener("click", () => {
-
-const menu = document.querySelector("#menu");
-
-if(menu){
-
-menu.scrollIntoView({
-behavior:"smooth"
-});
-
-}
-
-});
+  });
 
 }
 
 
 
-// ==============================
-// BASIC PERFORMANCE SAFETY
-// ==============================
+// ===============================
+// MENU DATA
+// ===============================
 
-// prevent heavy scroll event execution
-
-let ticking = false;
-
-window.addEventListener("scroll", function(){
-
-if(!ticking){
-
-window.requestAnimationFrame(function(){
-
-ticking = false;
-
-});
-
-ticking = true;
-
-}
-
-});
-// explore menu scroll
-
-document.querySelector(".explore-btn")
-.addEventListener("click",()=>{
-
-document.querySelector("#menu")
-.scrollIntoView({behavior:"smooth"})
-
-})
-
-
-
-const menuData={
+const menuData = {
 
 coffee:[
 "Espresso","Ristretto","Sanger","Latte","Black Coffee","V60",
@@ -216,115 +126,161 @@ snack:[
 ],
 
 signature:[
-"Containe Signature","Concat Signature","Special House Blend"
+"Containe Signature",
+"Concat Signature",
+"House Blend Signature"
 ]
 
-}
+};
 
 
 
-const popup=document.querySelector(".menu-popup")
-const grid=document.querySelector("#menu-grid")
-const title=document.querySelector("#popup-title")
+// ===============================
+// POPUP MENU CATEGORY
+// ===============================
+
+const popup = document.querySelector(".menu-popup");
+const menuGrid = document.querySelector("#menu-grid");
+const popupTitle = document.querySelector("#popup-title");
+
+document.querySelectorAll(".category-card").forEach(card => {
+
+  card.addEventListener("click", () => {
+
+    const category = card.dataset.category;
+
+    if (!menuData[category]) return;
+
+    popupTitle.textContent = card.textContent;
+
+    menuGrid.innerHTML = "";
+
+    menuData[category].forEach(menu => {
+
+      const item = document.createElement("div");
+
+      item.className = "menu-item glass";
+
+      item.textContent = menu;
+
+      item.addEventListener("click", () => {
+        openDetail(menu);
+      });
+
+      menuGrid.appendChild(item);
+
+    });
+
+    popup.classList.remove("hidden");
+
+  });
+
+});
 
 
 
-document.querySelectorAll(".category-card")
-.forEach(card=>{
+// ===============================
+// CLOSE POPUP
+// ===============================
 
-card.addEventListener("click",()=>{
+const closePopup = document.querySelector(".close-popup");
 
-let cat=card.dataset.category
+if (closePopup) {
 
-title.textContent=card.textContent
+  closePopup.addEventListener("click", () => {
 
-grid.innerHTML=""
+    popup.classList.add("hidden");
 
-menuData[cat].forEach(item=>{
-
-let div=document.createElement("div")
-
-div.className="menu-item"
-
-div.textContent=item
-
-div.onclick=()=>openDetail(item)
-
-grid.appendChild(div)
-
-})
-
-popup.classList.remove("hidden")
-
-})
-
-})
-
-
-
-document.querySelector(".close-popup")
-.onclick=()=>popup.classList.add("hidden")
-
-
-
-const detail=document.querySelector(".menu-detail")
-
-function openDetail(name){
-
-document.querySelector("#detail-name").textContent=name
-
-document.querySelector("#detail-desc")
-.textContent="Rich flavor with balanced sweetness."
-
-document.querySelector("#detail-price")
-.textContent="Price : Rp25.000"
-
-document.querySelector("#detail-img").src=
-"https://source.unsplash.com/400x300/?coffee"
-
-detail.classList.remove("hidden")
+  });
 
 }
 
 
 
-document.querySelector(".close-detail")
-.onclick=()=>detail.classList.add("hidden")
+// ===============================
+// MENU DETAIL POPUP
+// ===============================
+
+const detailPopup = document.querySelector(".menu-detail");
+
+function openDetail(name) {
+
+  const img = document.querySelector("#detail-img");
+  const title = document.querySelector("#detail-name");
+  const desc = document.querySelector("#detail-desc");
+  const price = document.querySelector("#detail-price");
+
+  title.textContent = name;
+
+  desc.textContent =
+    "Rich coffee flavor with smooth texture and balanced sweetness.";
+
+  price.textContent = "Price : Rp25.000";
+
+  img.src = "https://source.unsplash.com/600x400/?coffee";
+
+  detailPopup.classList.remove("hidden");
+
+}
 
 
 
-// gallery zoom
+// ===============================
+// CLOSE DETAIL
+// ===============================
 
-document.querySelectorAll(".gallery-grid img")
-.forEach(img=>{
+const closeDetail = document.querySelector(".close-detail");
 
-img.addEventListener("click",()=>{
+if (closeDetail) {
 
-let overlay=document.createElement("div")
+  closeDetail.addEventListener("click", () => {
 
-overlay.style.position="fixed"
-overlay.style.top="0"
-overlay.style.left="0"
-overlay.style.width="100%"
-overlay.style.height="100%"
-overlay.style.background="rgba(0,0,0,0.8)"
-overlay.style.display="flex"
-overlay.style.justifyContent="center"
-overlay.style.alignItems="center"
+    detailPopup.classList.add("hidden");
 
-let big=document.createElement("img")
+  });
 
-big.src=img.src
-big.style.maxWidth="80%"
-big.style.borderRadius="12px"
+}
 
-overlay.appendChild(big)
 
-overlay.onclick=()=>overlay.remove()
 
-document.body.appendChild(overlay)
+// ===============================
+// GALLERY ZOOM
+// ===============================
 
-})
+document.querySelectorAll(".gallery-grid img").forEach(img => {
 
-})
+  img.addEventListener("click", () => {
 
+    const overlay = document.createElement("div");
+
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.background = "rgba(0,0,0,0.9)";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "999";
+
+    const big = document.createElement("img");
+
+    big.src = img.src;
+    big.style.maxWidth = "80%";
+    big.style.borderRadius = "14px";
+
+    overlay.appendChild(big);
+
+    overlay.addEventListener("click", () => {
+      overlay.remove();
+    });
+
+    document.body.appendChild(overlay);
+
+  });
+
+});
+
+
+});
