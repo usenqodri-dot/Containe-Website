@@ -510,3 +510,66 @@ opacity:.7;
 .project-close:hover{
 opacity:1;
 }
+.card{
+position:relative;
+width:260px;
+height:320px;
+background:#111;
+border-radius:20px;
+overflow:hidden;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.5s;
+}
+
+.card .circle{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+.card .circle::before{
+content:"";
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:120px;
+height:120px;
+background:#c59d5f;
+border-radius:50%;
+transition:0.5s;
+}
+
+.card:hover .circle::before{
+width:100%;
+height:100%;
+border-radius:20px;
+}
+
+.logo{
+position:relative;
+width:80px;
+transition:0.5s;
+}
+
+.card:hover .logo{
+transform:scale(1.3);
+}
+
+.content{
+position:absolute;
+bottom:20px;
+text-align:center;
+opacity:0;
+transition:0.5s;
+}
+
+.card:hover .content{
+opacity:1;
+transform:translateY(-10px);
+}
