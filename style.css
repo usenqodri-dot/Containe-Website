@@ -457,3 +457,14 @@ padding:12px 18px;
 border-radius:30px;
 cursor:pointer;
 }
+
+.menu-detail.hidden{
+opacity:0;
+pointer-events:none;
+}
+
+.menu-detail{
+opacity:1;
+pointer-events:auto;
+transition:0.3s;
+}
