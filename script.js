@@ -131,11 +131,8 @@ loadMenu(category)
 // MENU DETAIL POPUP
 // ===============================
 
-const detailPopup = document.querySelector(".menu-detail")
-
-let currentMenu = null
-
 function openDetail(menu){
+const popup = document.querySelector(".menu-detail")
 
 const img = document.querySelector("#detail-img")
 const title = document.querySelector("#detail-name")
@@ -174,8 +171,6 @@ closeBtn.addEventListener("click",()=>{
 
 if(detailPopup){
 detailPopup.classList.add("hidden")
-}
-
 })
 
 }
@@ -250,3 +245,4 @@ window.open(`https://wa.me/${phone}?text=${message}`)
 loadMenu("coffee")
 
 })
+
