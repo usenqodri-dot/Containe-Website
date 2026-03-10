@@ -1,10 +1,14 @@
+document.addEventListener("DOMContentLoaded", function(){
+
 // ===============================
 // NAVBAR SCROLL EFFECT
 // ===============================
 
 const navbar = document.querySelector(".navbar")
 
-window.addEventListener("scroll", () => {
+if(navbar){
+
+window.addEventListener("scroll", ()=>{
 
 if(window.scrollY > 50){
 navbar.classList.add("scrolled")
@@ -13,6 +17,8 @@ navbar.classList.remove("scrolled")
 }
 
 })
+
+}
 
 
 // ===============================
@@ -56,12 +62,14 @@ signature:[
 
 
 // ===============================
-// MENU GRID GENERATOR
+// MENU GRID
 // ===============================
 
 const menuGrid = document.querySelector("#menu-grid")
 
 function loadMenu(category){
+
+if(!menuGrid) return
 
 menuGrid.innerHTML=""
 
@@ -97,10 +105,12 @@ menuGrid.appendChild(item)
 
 
 // ===============================
-// MENU CATEGORY BUTTON
+// CATEGORY BUTTON
 // ===============================
 
 const categoryButtons = document.querySelectorAll(".menu-category button")
+
+if(categoryButtons){
 
 categoryButtons.forEach(btn=>{
 
@@ -113,6 +123,8 @@ loadMenu(category)
 })
 
 })
+
+}
 
 
 // ===============================
@@ -130,6 +142,8 @@ const title = document.querySelector("#detail-name")
 const desc = document.querySelector("#detail-desc")
 const price = document.querySelector("#detail-price")
 
+if(!img || !title || !desc || !price) return
+
 title.innerText = menu.name
 
 desc.innerText =
@@ -139,7 +153,9 @@ price.innerText = "Rp "+menu.price
 
 img.src=`https://source.unsplash.com/600x400/?${menu.img}`
 
+if(detailPopup){
 detailPopup.classList.remove("hidden")
+}
 
 currentMenu = menu
 
@@ -150,12 +166,19 @@ currentMenu = menu
 // CLOSE POPUP
 // ===============================
 
-document.querySelector(".close-detail")
-.addEventListener("click",()=>{
+const closeBtn = document.querySelector(".close-detail")
 
+if(closeBtn){
+
+closeBtn.addEventListener("click",()=>{
+
+if(detailPopup){
 detailPopup.classList.add("hidden")
+}
 
 })
+
+}
 
 
 // ===============================
@@ -176,7 +199,9 @@ if(!currentMenu) return
 
 cart.push(currentMenu)
 
+if(cartCount){
 cartCount.innerText = cart.length
+}
 
 })
 
@@ -223,3 +248,5 @@ window.open(`https://wa.me/${phone}?text=${message}`)
 // ===============================
 
 loadMenu("coffee")
+
+})
