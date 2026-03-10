@@ -1,60 +1,65 @@
-document.addEventListener("DOMContentLoaded",()=>{
-
+document.addEventListener("DOMContentLoaded", () => {
 
 const menuData = {
 
 coffee:[
 {name:"Espresso",price:18000,img:"espresso"},
 {name:"Latte",price:25000,img:"latte"},
-{name:"Cappuccino",price:25000,img:"cappuccino"}
+{name:"Cappuccino",price:25000,img:"cappuccino"},
+{name:"Americano",price:22000,img:"americano"},
+{name:"V60",price:28000,img:"pour over coffee"}
 ],
 
 noncoffee:[
 {name:"Matcha Latte",price:26000,img:"matcha latte"},
-{name:"Chocolate",price:26000,img:"chocolate drink"}
+{name:"Chocolate",price:26000,img:"chocolate drink"},
+{name:"Red Velvet",price:26000,img:"red velvet latte"}
 ],
 
 tea:[
 {name:"Thai Tea",price:22000,img:"thai tea"},
-{name:"Peach Tea",price:22000,img:"peach tea"}
+{name:"Peach Tea",price:22000,img:"peach tea"},
+{name:"Earl Grey",price:22000,img:"earl grey tea"}
 ],
 
 snack:[
+{name:"French Fries",price:20000,img:"french fries"},
 {name:"Waffle",price:25000,img:"waffle"},
-{name:"Fries",price:20000,img:"french fries"}
+{name:"Nuggets",price:22000,img:"chicken nuggets"}
 ],
 
 signature:[
-{name:"Containe Signature",price:30000,img:"special coffee"}
+{name:"Containe Signature",price:30000,img:"special coffee"},
+{name:"Concat Signature",price:30000,img:"coffee latte"}
 ]
 
-}
+};
 
 
+// ELEMENT
 const menuGrid = document.querySelector("#menu-grid")
-const detailPopup = document.querySelector(".menu-detail")
+const popup = document.querySelector(".menu-detail")
+const closeBtn = document.querySelector(".close-detail")
 
-let currentMenu=null
-let cart=[]
+let currentMenu = null
 
 
+// LOAD MENU
 function loadMenu(category){
 
 if(!menuGrid) return
 
-menuGrid.innerHTML=""
+menuGrid.innerHTML = ""
 
 menuData[category].forEach(menu=>{
 
-const item=document.createElement("div")
-item.className="menu-item glass"
+const item = document.createElement("div")
+item.className = "menu-item glass"
 
-item.innerHTML=`
-
+item.innerHTML = `
 <img src="https://source.unsplash.com/400x300/?${menu.img}">
 <h4>${menu.name}</h4>
 <p>Rp ${menu.price}</p>
-
 `
 
 item.addEventListener("click",()=>{
@@ -68,68 +73,51 @@ menuGrid.appendChild(item)
 }
 
 
+// OPEN DETAIL POPUP
 function openDetail(menu){
 
-const img=document.querySelector("#detail-img")
-const title=document.querySelector("#detail-name")
-const desc=document.querySelector("#detail-desc")
-const price=document.querySelector("#detail-price")
+if(!popup) return
+
+const img = document.querySelector("#detail-img")
+const title = document.querySelector("#detail-name")
+const desc = document.querySelector("#detail-desc")
+const price = document.querySelector("#detail-price")
 
 if(!img) return
 
-title.innerText=menu.name
-desc.innerText="Signature drink with balanced sweetness"
-price.innerText="Rp "+menu.price
+title.textContent = menu.name
+desc.textContent = "Signature drink with balanced sweetness"
+price.textContent = "Rp " + menu.price
 
-img.src=`https://source.unsplash.com/600x400/?${menu.img}`
+img.src = `https://source.unsplash.com/600x400/?${menu.img}`
 
-detailPopup.classList.remove("hidden")
+popup.classList.remove("hidden")
 
-currentMenu=menu
+currentMenu = menu
 
 }
 
 
-const closeBtn=document.querySelector(".close-detail")
-
+// CLOSE POPUP
 if(closeBtn){
 
 closeBtn.addEventListener("click",()=>{
 
-detailPopup.classList.add("hidden")
+popup.classList.add("hidden")
 
 })
 
 }
 
 
-const addCartBtn=document.querySelector(".add-cart")
-const cartCount=document.querySelector("#cart-count")
-
-if(addCartBtn){
-
-addCartBtn.addEventListener("click",()=>{
-
-if(!currentMenu) return
-
-cart.push(currentMenu)
-
-if(cartCount){
-cartCount.innerText=cart.length
-}
-
-})
-
-}
-
-
-const categoryButtons=document.querySelectorAll(".menu-category button")
+// CATEGORY BUTTON
+const categoryButtons = document.querySelectorAll("[data-category]")
 
 categoryButtons.forEach(btn=>{
 
 btn.addEventListener("click",()=>{
 
-const category=btn.dataset.category
+const category = btn.dataset.category
 
 loadMenu(category)
 
@@ -138,37 +126,7 @@ loadMenu(category)
 })
 
 
-const waBtn=document.querySelector("#whatsapp-order")
-
-if(waBtn){
-
-waBtn.addEventListener("click",()=>{
-
-if(cart.length===0){
-
-alert("Cart kosong")
-
-return
-
-}
-
-let message="Halo saya ingin order:%0A"
-
-cart.forEach(item=>{
-
-message+=`- ${item.name} Rp${item.price}%0A`
-
-})
-
-const phone="6281234567890"
-
-window.open(`https://wa.me/${phone}?text=${message}`)
-
-})
-
-}
-
-
+// DEFAULT MENU
 loadMenu("coffee")
 
 })
