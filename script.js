@@ -150,54 +150,48 @@ function showDetail(name){
 /* ===============================
    PROJECT MODAL
 ================================ */
-const projectModal = document.getElementById("projectModal");
-const projectContent = document.getElementById("projectContent");
-const projectText = document.getElementById("projectText");
-const closeProjectBtn = document.getElementById("closeProjectBtn");
 const projects = document.querySelectorAll(".project-trigger")
+const projectModal = document.getElementById("projectModal")
+const projectText = document.getElementById("projectText")
+const closeProjectBtn = document.getElementById("closeProjectBtn")
 
 projects.forEach(card => {
-    card.addEventListener("click", ()=>{
-        const type = card.dataset.project;
 
-        projectModal.classList.add("active");
+  card.addEventListener("click", () => {
 
-        if(type === "coffee"){
-            projectContent.style.backgroundImage =
-            "url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&q=80')";
-            projectText.innerHTML = `
-                <h2>Coffee Concept</h2>
-                <p>
-                Containè melihat kopi sebagai pengalaman,
-                bukan sekadar minuman. Setiap cangkir
-                dirancang menghadirkan aroma, karakter,
-                dan suasana elegan.
-                </p>
-            `;
-        }
+    const type = card.dataset.project
 
-        if(type === "brand"){
-            projectContent.style.backgroundImage =
-            "url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80')";
-            projectText.innerHTML = `
-                <h2>Brand Identity</h2>
-                <p>
-                Containè adalah brand kopi premium
-                dengan identitas modern dan minimalis
-                yang menciptakan pengalaman tak terlupakan.
-                </p>
-            `;
-        }
+    if(type === "coffee"){
+      projectText.innerHTML = `
+      <h2>Coffee Concept</h2>
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=900">
+      <p>
+      Eksperimen konsep kopi modern dari Containè.
+      Menggabungkan estetika, rasa, dan pengalaman minum kopi premium.
+      </p>
+      `
+    }
 
-        document.body.classList.add("blurred");
-    });
-});
+    if(type === "brand"){
+      projectText.innerHTML = `
+      <h2>Brand Identity</h2>
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900">
+      <p>
+      Eksplorasi visual brand Containè.
+      Fokus pada desain minimal, elegan, dan modern.
+      </p>
+      `
+    }
 
-closeProjectBtn.addEventListener("click", ()=>{
-    projectModal.classList.remove("active");
-    document.body.classList.remove("blurred");
-});
+    projectModal.classList.add("active")
 
+  })
+
+})
+
+closeProjectBtn.onclick = () => {
+  projectModal.classList.remove("active")
+}
 /* ===============================
    WHATSAPP POPUP
 ================================ */
@@ -215,6 +209,7 @@ document.getElementById("openWA").addEventListener("click", ()=>{
         </a>
     `);
 });
+
 
 
 
