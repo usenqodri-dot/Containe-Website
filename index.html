@@ -1,152 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/924/924514.png">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Containè Coffee</title>
+<title>Containe Coffee</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/924/924514.png">
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
 
-<div class="background"></div>
-
 <header class="navbar glass">
-
-<div class="logo">Containè</div>
-
-<nav>
-
-<ul class="nav-links">
-
-<li><a href="#home">Home</a></li>
-<li><a href="#menu">Menu</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#visit">Visit</a></li>
-
-</ul>
-
-</nav>
-
-<div class="menu-toggle">
-☰
+<h1>Containè Coffee</h1>
+<div class="cart">
+🛒 <span id="cart-count">0</span>
 </div>
-
 </header>
 
 
-<section id="home" class="hero">
+<section class="menu">
 
-<div class="hero-card glass">
+<div class="menu-category">
 
-<img src="containe.png" class="hero-logo">
-
-<h1>Premium Coffee Experience</h1>
-
-<p>Fresh beans. Perfect brew. Modern ambience.</p>
-
-<button class="glass-btn explore-btn">Explore Menu</button>
+<button data-category="coffee">Coffee</button>
+<button data-category="noncoffee">Non Coffee</button>
+<button data-category="tea">Tea</button>
+<button data-category="snack">Snack</button>
+<button data-category="signature">Signature</button>
 
 </div>
-
-</section>
-
-<section id="menu" class="menu-section">
-
-<h2 class="section-title">Signature Drinks</h2>
-
-<div class="category-grid">
-
-<div class="category-card glass" data-category="coffee">
-Coffee Series
-</div>
-
-<div class="category-card glass" data-category="noncoffee">
-Non Coffee Series
-</div>
-
-<div class="category-card glass" data-category="tea">
-Tea Series
-</div>
-
-<div class="category-card glass" data-category="signature">
-Signature Series
-</div>
-
-<div class="category-card glass" data-category="snack">
-Food / Snack
-</div>
-
-</div>
-
-</section>
-
-
-<section id="gallery">
-
-<h2 class="section-title center">Coffee Moments</h2>
-
-<div class="gallery-grid">
-
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
-<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
-<img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c">
-<img src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
-<img src="https://images.unsplash.com/photo-1509785307050-d4066910ec1e">
-<img src="https://images.unsplash.com/photo-1507914372368-b2b085b925a1">
-
-</div>
-
-</section>
-
-
-<section id="visit">
-
-<div class="visit-card glass">
-
-<h2>Visit Our Cafe</h2>
-
-<p>Open Daily</p>
-
-<p>08:00 - 23:00</p>
-
-<p>Medan, Indonesia</p>
-
-<a class="glass-btn" href="#">Open Map</a>
-
-</div>
-
-</section>
-
-
-<footer class="glass">
-
-<p>© 2026 Containè Coffee</p>
-
-</footer>
-
-
-<script src="script.js"></script>
-<div class="menu-popup hidden">
-
-<div class="popup-content glass">
-
-<span class="close-popup">✕</span>
-
-<h2 id="popup-title"></h2>
 
 <div id="menu-grid"></div>
 
-</div>
-
-</div>
+</section>
 
 
 <div class="menu-detail hidden">
@@ -163,14 +53,18 @@ Food / Snack
 
 <p id="detail-price"></p>
 
-<button class="glass-btn">Add to Cart</button>
+<button class="add-cart">Add To Cart</button>
 
 </div>
 
 </div>
+
+
+<a id="whatsapp-order" class="whatsapp-btn glass">
+Order WhatsApp
+</a>
+
+<script src="script.js"></script>
+
 </body>
-
 </html>
-
-
-
